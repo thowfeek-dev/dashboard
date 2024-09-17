@@ -1,4 +1,4 @@
-```markdown
+
 # Dashboard Project
 
 This project is a simple dashboard application built with a TypeScript backend using Express and a Next.js frontend. It includes user registration, login, role management, and basic arithmetic calculations. 
@@ -129,4 +129,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 For any issues or questions, please open an issue on the [GitHub repository](https://github.com/thowfeek-dev/dashboard).
-```
