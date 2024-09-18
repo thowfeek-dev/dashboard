@@ -36,4 +36,20 @@ router.post("/login", (req, res) => __awaiter(void 0, void 0, void 0, function* 
     const token = jsonwebtoken_1.default.sign({ userId: user._id, role: user.role }, JWT_SECRET);
     res.json({ token });
 }));
+router.get('/me', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
+    const token = (_a = req.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(' ')[1];
+    if (!token)
+        return res.status(401).json({ message: 'No token provided' });
+    try {
+        const decoded = jsonwebtoken_1.default.verify(token, JWT_SECRET);
+        const user = yield User_1.User.findById(decoded.userId);
+        if (!user)
+            return res.status(404).json({ message: 'User not found' });
+        res.json({ username: user.username, email: user.email, role: user.role });
+    }
+    catch (err) {
+        res.status(401).json({ message: 'Invalid token' });
+    }
+}));
 exports.default = router;
